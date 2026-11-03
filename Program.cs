@@ -1,3 +1,4 @@
+using OpenTelemetry;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -5,6 +6,7 @@ using OpenTelemetry.Trace;
 using telemetry;
 
 var builder = WebApplication.CreateBuilder(args);
+var serviceName = builder.Configuration["OTEL_SERVICE_NAME"] ?? "yeezy-telemetry";
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -15,11 +17,11 @@ builder.Logging.AddOpenTelemetry(options =>
     options
         .SetResourceBuilder(
             ResourceBuilder.CreateDefault()
-                .AddService("TelemetryExample"))
+                .AddService(serviceName))
         .AddConsoleExporter();
 });
 builder.Services.AddOpenTelemetry()
-    .ConfigureResource(resource => resource.AddService("TelemetryExample"))
+    .ConfigureResource(resource => resource.AddService(serviceName))
     .WithTracing(tracing => tracing
         .AddAspNetCoreInstrumentation()
         .AddConsoleExporter())
@@ -27,7 +29,8 @@ builder.Services.AddOpenTelemetry()
         .AddPrometheusExporter()
         .AddAspNetCoreInstrumentation()
         .AddConsoleExporter()
-        .AddMeter(Metrics.MeterName));
+        .AddMeter(Metrics.MeterName))
+    .UseOtlpExporter();
 
 var app = builder.Build();
 
