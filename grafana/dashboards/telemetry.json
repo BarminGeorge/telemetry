@@ -19,7 +19,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "histogram_quantile(0.95, sum by (job, le) (rate(kestrel_connection_duration_seconds_bucket{job=\"telemetry\"}[1m])))",
+          "expr": "histogram_quantile(0.95, sum by (job, le) (rate(kestrel_connection_duration_seconds_bucket{job=\"yeezy-telemetry\"}[1m])))",
           "legendFormat": "{{job}}",
           "range": true
         }

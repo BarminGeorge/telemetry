@@ -1,6 +1,6 @@
 {
   "uid": "telemetry",
-  "title": "telemetry: OTLP",
+  "title": "yeezy-telemetry: OTLP",
   "schemaVersion": 39,
   "version": 1,
   "refresh": "5s",
@@ -19,7 +19,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "requests_index_count_pcs_total{service_name=\"telemetry\"}",
+          "expr": "requests_index_count_pcs_total{service_name=\"yeezy-telemetry\"}",
           "legendFormat": "{{service_name}}",
           "range": true
         }
@@ -38,7 +38,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "histogram_quantile(0.95, sum by (service_name, le) (rate(kestrel_connection_duration_seconds_bucket{service_name=\"telemetry\"}[1m])))",
+          "expr": "histogram_quantile(0.95, sum by (service_name, le) (rate(kestrel_connection_duration_seconds_bucket{service_name=\"yeezy-telemetry\"}[1m])))",
           "legendFormat": "{{service_name}}",
           "range": true
         }
