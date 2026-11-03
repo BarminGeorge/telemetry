@@ -6,7 +6,7 @@ using OpenTelemetry.Trace;
 using telemetry;
 
 var builder = WebApplication.CreateBuilder(args);
-var serviceName = builder.Configuration["OTEL_SERVICE_NAME"] ?? "yeezy-telemetry";
+var serviceName = builder.Configuration["OTEL_SERVICE_NAME"] ?? "telemetry";
 
 // Add services to the container.
 builder.Services.AddRazorPages();
